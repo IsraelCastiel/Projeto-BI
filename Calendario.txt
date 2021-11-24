@@ -1,0 +1,28 @@
+[Calendário Movimento]:
+LOAD
+NUM(NUM(year(DATA))&NUM(MONTH(DATA),'00'),'000000') AS %CHAVE_DATA,
+NUM(NUM(year(DATA))&NUM(MONTH(DATA),'00'),'000000') AS [Competência Movimento],
+YEAR(DATA) AS [Ano Movimento2],
+Right(YEAR(DATA),2) AS [Ano_Movimento4],
+if(YEAR(DATA)<2018 and year(DATA)>2014, year(DATA), null()) AS [Ano Movimento3],
+if(YEAR(DATA)<=2017,null(),year(DATA)) AS [Ano Movimento],
+//-YEAR(AddYears(DATA,-1)) AS [Ano Anterior Movimento],
+MONTH(DATA) AS [Mês Movimento],
+NUM(MONTH(DATA),'00') AS [Mês Num Movimento],
+Month(AddMonths(DATA,-1)) AS [Mês Anterior Movimento],
+date(MonthStart(DATA),'MMM/YYYY') AS [Mês Ano Movimento],
+date(MonthStart(DATA),'MMM/YYYY') AS [Mês Ano Movimento_2],
+date(MonthStart(AddMonths(DATA,-1)),'MMM/YYYY') AS [Mês Ano Anterior Movimento],
+DAY(DATA) AS [Dia Movimento],
+DATE(DATA) AS [Data Movimento],
+ceil(Month(date(DATA))/2)&'º Bimestre' AS [Bimestre Movimento],
+ceil(Month(date(DATA))/3)&'º Trimestre' AS [Trimestre Movimento],
+ceil(Month(date(DATA))/4)&'º Quadrimestre' AS [Quadrimestre Movimento],
+ceil(Month(date(DATA))/6)&'º Semestre' AS [Semestre Movimento]
+,num(year(AddMonths(DATA,-12)),'0000')&num(month(AddMonths(DATA,-12)),'00') AS [COMP 12meses];
+;
+
+
+LOAD
+MONTHEND(TODAY()) - RECNO()+1 AS [DATA]
+AUTOGENERATE (MONTHEND(TODAY())-'01/01/2014')
