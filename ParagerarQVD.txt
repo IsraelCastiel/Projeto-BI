@@ -1,0 +1,21 @@
+no método main		
+
+
+		if ComputerName()='SRVBI' then
+SET vMaquina = 'C:';
+ELSEIF  wildmatch(ComputerName(),'WKS*') THEN
+SET vMaquina = '\\srvqlikview01\d$';
+ELSE
+SET vMaquina = 'D:';
+END IF;
+
+SET TESTE ='$(vMaquina)\1_NTI_INOVAÇÃO\QVD_DADOS\';
+
+
+
+
+// para geração	
+		STORE [BENEFICIARIO SOLUS1] INTO $(TESTE)TESTE_ISRAEL.QVD (QVD);
+		DROP TABLE [BENEFICIARIO SOLUS1];
+		
+EXIT SCRIPT;		
