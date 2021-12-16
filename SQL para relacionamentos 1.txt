@@ -1,0 +1,3 @@
+select * from all_col_comments 
+where owner ='SOLUS' 
+AND COLUMN_NAME ='CNOMEFORN' --AND TABLE_NAME LIKE '%FIN%'
